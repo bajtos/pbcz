@@ -27,7 +27,14 @@ Priklad:
 ** 3. Definice obci (PBCZ_MUNICIPALITY)
 =======================================
 
-TODO
+Obce jsou (zatim) definovane jako plochy seznam, identifikatorem je CSU kod.
+
+Priklad:
+    "municipality","name_cs"
+    "500011","Želechovice nad Dřevnicí"
+    "500259","Veřovice"
+    "500291","Vřesina"
+    "500496","Olomouc"
 
 ** 4. Extrakce dat (financnich castek)
 
