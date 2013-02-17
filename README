@@ -5,12 +5,21 @@ Nastroje pro zpracovani rozpoctu obci do formatu Google Public Data
 1. Struktura souboru
 ====================
 
-Vsechny skripty ocekavaji seznam CSV souboru v adresari data/
-   data/vsechna-data-2000.csv
-   data/vsechna-data-2001.csv
-   (...)
-   extract-budget-classes.py
-   (...)
+tools/
+  - skripty pro zpracovani dat
+
+data/
+ - vstupni data
+    vsechna-data-2000.csv
+    vsechna-data-2001.csv
+    (...)
+
+dspl/
+ - definice pro Google Public Data
+    public-municipalities-budgets.xml - hlavni definice pro Google
+    budget-classes.csv - rozpoctove tridy (PBCZ_BUDGET_CLASSES)
+    municipalities.csv - seznam obci (PBCZ_MUNICIPALITY)
+
 
 ** 2. Definice trid (PBCZ_BUDGET_CLASSES)
 =========================================
@@ -24,7 +33,7 @@ Priklad:
     "11","Daně z příjmů, zisku a kapitálových výnosů","1"
     "111","Daně z příjmů fyzických osob","11"
 
-CSV lze vygenerovat skriptem extract-budget-classes.py
+CSV lze vygenerovat skriptem tools/extract-budget-classes.py
 
 ** 3. Definice obci (PBCZ_MUNICIPALITY)
 =======================================
@@ -38,7 +47,7 @@ Priklad:
     "500291","Vřesina"
     "500496","Olomouc"
 
-CSV lze vygenerovat skriptem extract-municipalities.py
+CSV lze vygenerovat skriptem tools/extract-municipalities.py
 
 ** 4. Extrakce dat (financnich castek)
 ======================================
@@ -58,7 +67,7 @@ Priklad:
     1,554782,2003,31100467600
 
 Alternativne lze ty same data dostat z CSV souboru
- - nejdriv zavolat preprocess-data.py, ktery z CSV souboru vytvori SQLite3 databazi data/amounts.db
- - pak zavolat dump-class-slice.sh, ktery vytvori "slice" pro tridy
+ - nejdriv zavolat tools/preprocess-data.py, ktery z CSV souboru vytvori SQLite3 databazi data/amounts.db
+ - pak zavolat tools/dump-class-slice.sh, ktery vytvori "slice" pro tridy
 
 
