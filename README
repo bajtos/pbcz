@@ -1,0 +1,36 @@
+== 
+Nastroje pro zpracovani rozpoctu obci do formatu Google Public Data 
+==
+
+1. Struktura souboru
+====================
+
+Vsechny skripty ocekavaji seznam CSV souboru v adresari data/
+   data/vsechna-data-2000.csv
+   data/vsechna-data-2001.csv
+   (...)
+   extract-budget-classes.py
+   (...)
+
+** 2. Definice trid (PBCZ_BUDGET_CLASSES)
+=========================================
+
+Tridy jsou definovane jako hierarchie (strom), kde kazda polozka ma odkaz na rodice.
+Polozky na nejvyssi urovni (tridy: 1,2,3,4,5,6,8) maji jako predka prazdnou hodnotu.
+
+Priklad:
+    "budget_class","name_cs","parent"
+    "1","DAŇOVÉ PŘÍJMY",""
+    "11","Daně z příjmů, zisku a kapitálových výnosů","1"
+    "111","Daně z příjmů fyzických osob","11"
+
+** 3. Definice obci (PBCZ_MUNICIPALITY)
+=======================================
+
+TODO
+
+** 4. Extrakce dat (financnich castek)
+
+TODO
+
+
