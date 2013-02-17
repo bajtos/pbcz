@@ -4,7 +4,7 @@ import csv
 import glob
 
 def foreach_budget_item(callback, first_file_only = False):
-    data_files = glob.glob('data/*.csv')
+    data_files = glob.glob('data/vsechna-data-*.csv')
     for df in data_files:
        _foreach_item_in_file(df, callback)
        if (first_file_only): break
