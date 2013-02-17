@@ -1,11 +1,8 @@
 Backlog
-- extract budget values (create data CSV)
-- document data extraction
-
 - create DSPL XML
 
 Later
+- Geographical hierarchy (kraj, okres, municipality)
 - PBCZ_BUDGET_TYPE 
 - PBCZ_BUDGET_GROUPS 
-- Geographical hierarchy (kraj, okres, municipality)
 - Different metrics (amount, amount per citizen, etc.)

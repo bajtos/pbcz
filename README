@@ -24,6 +24,8 @@ Priklad:
     "11","Daně z příjmů, zisku a kapitálových výnosů","1"
     "111","Daně z příjmů fyzických osob","11"
 
+CSV lze vygenerovat skriptem extract-budget-classes.py
+
 ** 3. Definice obci (PBCZ_MUNICIPALITY)
 =======================================
 
@@ -36,8 +38,27 @@ Priklad:
     "500291","Vřesina"
     "500496","Olomouc"
 
-** 4. Extrakce dat (financnich castek)
+CSV lze vygenerovat skriptem extract-municipalities.py
 
-TODO
+** 4. Extrakce dat (financnich castek)
+======================================
+
+Data lze ziskat primo z SQL databaze - viz dotazy v dump-class-slice.sh.
+    class1 je "Trida kod" (napr. "1")
+    class2 je "Skupina kod" (napr. "11")
+    class3 je "Podskupina kod" (napr. "111")
+    class4 je "Polozka kod" (napr. "1111")
+
+Priklad:
+
+    class,municipality,year,amount
+    1,554782,2000,24559090120
+    1,554782,2001,25450165990
+    1,554782,2002,28216844320
+    1,554782,2003,31100467600
+
+Alternativne lze ty same data dostat z CSV souboru
+ - nejdriv zavolat preprocess-data.py, ktery z CSV souboru vytvori SQLite3 databazi data/amounts.db
+ - pak zavolat dump-class-slice.sh, ktery vytvori "slice" pro tridy
 
 
