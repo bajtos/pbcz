@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dspl xmlns="http://schemas.google.com/dspl/2010"
+      xmlns:entity="http://www.google.com/publicdata/dataset/google/entity"
+      xmlns:quantity="http://www.google.com/publicdata/dataset/google/quantity"
+      xmlns:unit="http://www.google.com/publicdata/dataset/google/unit"
+      xmlns:geo="http://www.google.com/publicdata/dataset/google/geo"
+      xmlns:time="http://www.google.com/publicdata/dataset/google/time">
+
+   <import namespace="http://www.google.com/publicdata/dataset/google/entity"/>
+   <import namespace="http://www.google.com/publicdata/dataset/google/quantity"/>
+   <import namespace="http://www.google.com/publicdata/dataset/google/unit"/>
+   <import namespace="http://www.google.com/publicdata/dataset/google/geo"/>
+   <import namespace="http://www.google.com/publicdata/dataset/google/time"/>
+
+   <info>
+      <name>
+         <value xml:lang="cs-CZ">Rozpocty obci v Ceske Republice</value>
+      </name>
+      <description>
+         <value xml:lang="cs-CZ">TODO - popis o co jde</value>
+      </description>
+      <url>
+         <value xml:lang="cs-CZ">http://blog.rozpocetverejne.cz/2011/09/pomuzete-se-zverejnenim-rozpoctu-na.html</value>
+      </url>
+   </info>
+
+   <provider>
+      <name>
+         <value xml:lang="cs-CZ">rozpocetverejne.cz (TODO)</value>
+      </name>
+      <description>
+         <value xml:lang="cs-CZ">rozpocetverejne.cz (TODO)</value>
+      </description>
+      <url>
+         <value xml:lang="cs-CZ">http://www.rozpocetverejne.cz/</value>
+      </url>
+   </provider>
+
+   <!-- LATER
+   <topics>
+      <topic id="industry">
+         <info>
+            <name>
+               <value xml:lang="cs-CZ">Industry</value>
+            </name>
+         </info>
+      </topic>
+   </topics>
+   --> 
+
+   <concepts>
+      <concept id="municipality" extends="entity:entity">
+         <info>
+            <name>
+               <value xml:lang="cs-CZ">Obec</value>
+            </name>
+            <description>
+               <value xml:lang="cs-CZ">Obec (TODO - delsi popis)</value>
+            </description>
+            <pluralName>
+               <value xml:lang="cs-CZ">Obce</value>
+            </pluralName>
+         </info>
+         <!-- LATER
+         <topic ref="industry"/>
+         -->
+
+         <table ref="municipalities_tbl">
+            <mapProperty xml:lang="en" ref="name" toColumn="name_cs"/>
+         </table>
+      </concept>
+
+      <concept id="budget_class" extends="entity:entity">
+         <info>
+            <name>
+               <value xml:lang="cs-CZ">Rozpoctova trida</value>
+            </name>
+            <description>
+               <value xml:lang="cs-CZ">Trida/polozka rozpoctu (TODO - delsi popis)</value>
+            </description>
+            <pluralName>
+               <value xml:lang="cs-CZ">Rozpoctove tridy</value>
+            </pluralName>
+         </info>
+
+
+         <property id="parent" concept="budget_class" isParent="true">
+            <info>
+               <name>
+                  <value xml:lang="cs-CZ">Souhrnna rozpoctova trida</value>
+               </name>
+            </info>
+         </property>
+         <table ref="budget_classes_tbl">
+            <mapProperty xml:lang="en" ref="name" toColumn="name_cs"/>
+         </table>
+      </concept>
+
+
+     <!-- Metrics -->
+     <concept id="total_amount" extends="quantity:amount">
+         <info>
+            <name>
+               <value xml:lang="cs-CZ">Celkova castka</value>
+            </name>
+            <description>
+               <value xml:lang="cs-CZ">Celkova castka (TODO - delsi popis)</value>
+            </description>
+          </info>
+        <type ref="integer"/>
+        <attribute id="unit" concept="unit:currency">
+           <type ref="string"/>
+           <value>CZK</value>
+        </attribute>
+      </concept>
+   </concepts>
+
+   <slices>
+      <slice id="budget_classes_slice">
+         <dimension concept="budget_class"/>
+         <dimension concept="municipality"/>
+         <dimension concept="time:year"/>
+         <metric concept="total_amount"/>
+         <table ref="slice_budget_classes" />
+      </slice>
+   </slices>
+
+   <tables>
+      <table id="municipalities_tbl">
+         <column id="municipality" type="string"/>
+         <column id="name_cs" type="string"/>
+         <data>
+            <file encoding="utf-8" format="csv">municipalities.csv</file>
+         </data>
+      </table>
+
+      <table id="budget_classes_tbl">
+         <column id="budget_class" type="string"/>
+         <column id="name_cs" type="string"/>
+         <column id="parent" type="string"/>
+         <data>
+            <file encoding="utf-8" format="csv">budget-classes.csv</file>
+         </data>
+      </table>
+
+      <table id="slice_budget_classes">
+         <column id="budget_class" type="string"/>
+         <column id="municipality" type="string"/>
+         <column format="yyyy" id="year" type="date"/>
+         <column id="total_amount" type="integer"/>
+         <data>
+            <file encoding="utf-8" format="csv">slice-budget-classes.csv</file>
+         </data>
+      </table>
+
+   </tables>
+</dspl>
+<!-- vim: set ts=3 sw=3 : -->

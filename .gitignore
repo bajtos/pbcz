@@ -4,5 +4,7 @@
 /tutorial/
 *.pyc
 *.swp
-*.csv
+/*.csv
 /tags
+/dspl/*.zip
+/dspl/slice-*.csv
