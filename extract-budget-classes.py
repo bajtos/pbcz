@@ -5,7 +5,7 @@ from helpers import *
 
 def main():
     classes = { } 
-    foreach_budget_item(lambda item: extract_classes_from_item(classes, item), first_file_only =True)
+    foreach_budget_item(lambda item: extract_classes_from_item(classes, item))
     save_dimension_values('pbcz-budget-classes.csv', ['budget_class', 'name_cs', 'parent'], classes)
 
 def extract_classes_from_item(classes, item):
