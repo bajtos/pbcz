@@ -4,7 +4,7 @@ from helpers import *;
 
 valuesDict = { } 
 
-def extract_municipality(item):
+def extract_municipality(item, year):
     mid = item[1]
     name = item[0]
     if mid in valuesDict: return;

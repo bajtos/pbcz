@@ -2,6 +2,7 @@
 
 import csv
 import glob
+import re
 
 def foreach_budget_item(callback, first_file_only = False):
     data_files = glob.glob('data/vsechna-data-*.csv')
@@ -10,12 +11,16 @@ def foreach_budget_item(callback, first_file_only = False):
        if (first_file_only): break
     
 def _foreach_item_in_file(fname, callback):
-    print 'Processing file {0}'.format(fname)
+    year = parse_year_from_filename(fname);
+    print 'Processing file {0} (year {1})'.format(fname, year)
     with open(fname, 'rb') as csvfile:
         reader = csv.reader(csvfile, delimiter=',', quotechar='"', quoting=csv.QUOTE_NONNUMERIC)
         reader.next()
         for row in reader:
-            callback(row)
+            callback(row, year)
+
+def parse_year_from_filename(fname):
+    return int(re.search('data-(\d+).csv$', fname).group(1))
 
 def save_dimension_values(fname, column_names, valuesDict):
     with open(fname, 'wb') as csvfile:
