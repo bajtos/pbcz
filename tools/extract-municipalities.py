@@ -12,5 +12,5 @@ def extract_municipality(item, year):
     valuesDict[mid] = item
 
 foreach_budget_item(extract_municipality)
-save_dimension_values('pbcz-municipalities.csv', ['municipality', 'name_cs'], valuesDict)
+save_dimension_values('municipalities.csv', ['municipality', 'name_cs'], valuesDict)
 

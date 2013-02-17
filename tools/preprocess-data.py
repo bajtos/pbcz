@@ -4,7 +4,7 @@ import os
 import sqlite3 as sql
 from helpers import *
 
-dbfile = 'data/amounts.db'
+dbfile = resolve_path('data/amounts.db')
 
 def createdb(db):
     db.execute('CREATE TABLE data (Municipality INT, class1 INT, class2 INT, class3 INT, class4 INT, year INT, amount BIGINT)')
