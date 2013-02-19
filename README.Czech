@@ -33,21 +33,37 @@ Priklad:
     "11","Daně z příjmů, zisku a kapitálových výnosů","1"
     "111","Daně z příjmů fyzických osob","11"
 
-CSV lze vygenerovat skriptem tools/extract-budget-classes.py
+CSV (dspl/budget-classes.csv) lze vygenerovat skriptem tools/extract-budget-classes.py
 
 ** 3. Definice obci (PBCZ_MUNICIPALITY)
 =======================================
 
-Obce jsou (zatim) definovane jako plochy seznam, identifikatorem je CSU kod.
+Obce jsou zarazene do stromu kraj - okres - obec
+
+Kraje jsou definovane v souboru dspl/counties.csv, identifikator je zatim upraveny nazev kraje
+
+    "county","name_cs"
+    "kraj#Hlavní město Praha","Hlavní město Praha"
+    "kraj#Jihomoravský kraj","Jihomoravský kraj"
+    "kraj#Jihočeský kraj","Jihočeský kraj"
+
+Okresy jsou definovane podobne jako kraje, jsou v souboru dspl/regions.csv.
+    "region","name_cs","parent"
+    "okres#Benešov","Okres Benešov","kraj#Středočeský kraj"
+    "okres#Beroun","Okres Beroun","kraj#Středočeský kraj"
+    "okres#Blansko","Okres Blansko","kraj#Jihomoravský kraj"
+    "okres#Brno-Město","Okres Brno-Město","kraj#Jihomoravský kraj"
+
+Obce jsou pak v souboru dspl/municipalities.csv, identifikatorem je CSU kod.
 
 Priklad:
-    "municipality","name_cs"
-    "500011","Želechovice nad Dřevnicí"
-    "500259","Veřovice"
-    "500291","Vřesina"
-    "500496","Olomouc"
+    "municipality","name_cs","region"
+    "500011","Želechovice nad Dřevnicí","okres#Zlín"
+    "500259","Veřovice","okres#Nový Jičín"
+    "500291","Vřesina","okres#Ostrava-Město"
+    "500496","Olomouc","okres#Olomouc"
 
-CSV lze vygenerovat skriptem tools/extract-municipalities.py
+Vsechny CSV lze vygenerovat skriptem tools/extract-municipalities.py
 
 ** 4. Extrakce dat (financnich castek)
 ======================================

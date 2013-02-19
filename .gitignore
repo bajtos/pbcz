@@ -6,5 +6,5 @@
 *.swp
 /*.csv
 /tags
-/dspl/*.zip
+/*.zip
 /dspl/slice-*.csv

@@ -49,6 +49,50 @@
    --> 
 
    <concepts>
+      <concept id="county" extends="entity:entity">
+         <info>
+            <name>
+               <value xml:lang="cs-CZ">Kraj</value>
+            </name>
+            <description>
+               <value xml:lang="cs-CZ">Kraj (TODO - delsi popis)</value>
+            </description>
+            <pluralName>
+               <value xml:lang="cs-CZ">Kraje</value>
+            </pluralName>
+         </info>
+
+         <table ref="counties_tbl">
+            <mapProperty xml:lang="cs" ref="name" toColumn="name_cs"/>
+         </table>
+      </concept>
+
+      <concept id="region" extends="entity:entity">
+         <info>
+            <name>
+               <value xml:lang="cs-CZ">Kraj</value>
+            </name>
+            <description>
+               <value xml:lang="cs-CZ">Kraj (TODO - delsi popis)</value>
+            </description>
+            <pluralName>
+               <value xml:lang="cs-CZ">Kraje</value>
+            </pluralName>
+         </info>
+
+         <property id="parent" concept="county" isParent="true">
+            <info>
+               <name>
+                  <value xml:lang="cs-CZ">Kraj</value>
+               </name>
+            </info>
+         </property>
+
+         <table ref="regions_tbl">
+            <mapProperty xml:lang="cs" ref="name" toColumn="name_cs"/>
+         </table>
+      </concept>
+
       <concept id="municipality" extends="entity:entity">
          <info>
             <name>
@@ -65,8 +109,17 @@
          <topic ref="industry"/>
          -->
 
+         <property id="parent" concept="region" isParent="true">
+            <info>
+               <name>
+                  <value xml:lang="cs-CZ">Okres</value>
+               </name>
+            </info>
+         </property>
+
          <table ref="municipalities_tbl">
-            <mapProperty xml:lang="en" ref="name" toColumn="name_cs"/>
+            <mapProperty xml:lang="cs" ref="name" toColumn="name_cs"/>
+            <mapProperty ref="parent" toColumn="region"/>
          </table>
       </concept>
 
@@ -92,7 +145,7 @@
             </info>
          </property>
          <table ref="budget_classes_tbl">
-            <mapProperty xml:lang="en" ref="name" toColumn="name_cs"/>
+            <mapProperty xml:lang="cs" ref="name" toColumn="name_cs"/>
          </table>
       </concept>
 
@@ -126,9 +179,27 @@
    </slices>
 
    <tables>
+      <table id="counties_tbl">
+         <column id="county" type="string" />
+         <column id="name_cs" type="string" />
+         <data>
+            <file encoding="utf-8" format="csv">counties.csv</file>
+         </data>
+      </table>
+
+      <table id="regions_tbl">
+         <column id="region" type="string" />
+         <column id="name_cs" type="string" />
+         <column id="parent" type="string" />
+         <data>
+            <file encoding="utf-8" format="csv">regions.csv</file>
+         </data>
+      </table>
+
       <table id="municipalities_tbl">
-         <column id="municipality" type="string"/>
-         <column id="name_cs" type="string"/>
+         <column id="municipality" type="string" />
+         <column id="name_cs" type="string" />
+         <column id="region" type="string" />
          <data>
             <file encoding="utf-8" format="csv">municipalities.csv</file>
          </data>
