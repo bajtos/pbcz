@@ -12,7 +12,8 @@ def extract_classes_from_item(classes, item):
     register_class(classes, item[5], item[6], None)
     register_class(classes, item[7], item[8], item[5])
     register_class(classes, item[9], item[10], item[7])
-    register_class(classes, item[11], item[12], item[9])
+    # adding class4 to budget breakdown will cause overflow of dataset limit 150MB
+    # register_class(classes, item[11], item[12], item[9])
 
 
 def register_class(classes, cid, name, parent):

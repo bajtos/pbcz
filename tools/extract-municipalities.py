@@ -24,7 +24,8 @@ def register_entity(dict, item):
     dict[id] = item
 
 
-foreach_budget_item(extract_municipality, first_file_only = True)
+# foreach_budget_item(extract_municipality, first_file_only = True)
+foreach_budget_item(extract_municipality)
 save_dimension_values('municipalities.csv', ['municipality', 'name_cs', 'region'], municipalitiesDict)
 save_dimension_values('regions.csv', ['region', 'name_cs', 'parent'], regionsDict)
 save_dimension_values('counties.csv', ['county', 'name_cs'], countiesDict)

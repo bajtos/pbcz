@@ -13,5 +13,7 @@ select 'budget_class', 'municipality', 'year', 'total_amount';
 select class1 as class, municipality, year, sum(amount) from data where $FILTER group by municipality, class, year ORDER BY class, municipality, year;
 select class2 as class, municipality, year, sum(amount) from data where $FILTER group by municipality, class, year ORDER BY class, municipality, year;
 select class3 as class, municipality, year, sum(amount) from data where $FILTER group by municipality, class, year ORDER BY class, municipality, year;
-select class4 as class, municipality, year, sum(amount) from data where $FILTER group by municipality, class, year ORDER BY class, municipality, year;
 EOF
+
+# adding class4 to budget breakdown will cause overflow of dataset limit 150MB
+# select class4 as class, municipality, year, sum(amount) from data where $FILTER group by municipality, class, year ORDER BY class, municipality, year;
